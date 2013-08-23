@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="node">
+	<select id="getNodeLIst" parameterType="TravelInfoBO" resultType="NodeBO">
+		SELECT
+			`node`.`ID` as id,
+			`node`.`travelNo` as traveNo,
+			`node`.`nodeNo` as nodeNo,
+			`node`.`travelName` as travelName,
+			`node`.`Content` as content,
+			`node`.`endx` as endX,
+			`node`.`endy` as endY,
+			`node`.`enddate` endDate,
+			NODENAME as nodeName
+		FROM `travellist`.`node`
+		WHERE 
+			ID = #{id}
+		AND	TRAVELNO = #{travelNo}
+		AND TRAVELNAME = #{travelName}
+		ORDER BY NODENO ASC
+	</select>
+	
+	<select id="getNodeNo" resultType="Integer">
+		SELECT IFNULL(MAX(NODENO)+1 , 1 ) as nodeNo
+		FROM TRAVELLIST.NODE
+	</select>
+	
+	<insert id="insertNode" parameterType="NodeBO">
+		INSERT INTO `travellist`.`node`
+			(`ID`,
+			`travelNo`,
+			`nodeNo`,
+			`travelName`,
+			`Content`,
+			`endx`,
+			`endy`,
+			`enddate`,
+			`nodeName`)
+			VALUES
+			(
+			#{id},
+			#{travelNo},
+			#{nodeNo},
+			#{travelName},
+			#{content},
+			#{endX},
+			#{endY},
+			#{endDate},
+			#{nodeName}
+			);
+	</insert>
+	
+</mapper>

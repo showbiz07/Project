@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="travel">
+
+	
+	<select id="getTravelList" parameterType="TravelInfoBO" resultType="TravelInfoBO">
+		SELECT
+			TRAVELNAME 	as travelName,
+			TRAVELNO 	as travelNo,
+			ID			as id
+		FROM TRAVELLIST.TRAVEL
+		WHERE ID = #{id} 
+	</select>
+	
+	<select id="getMaxTravelNo" resultType="Integer">
+		SELECT IFNULL(MAX(TRAVELNO)+1 , 1 ) as travelNo
+		FROM TRAVELLIST.TRAVEL
+	</select>
+	
+	<insert id="insertTravel" parameterType="TravelInfoBO">
+		INSERT INTO TRAVELLIST.TRAVEL
+		(
+			TRAVELNAME,
+			TRAVELNO,
+			ID		
+		)
+		VALUES
+		(
+			#{travelName},
+			#{travelNo},
+			#{id}
+		)
+	</insert>
+	
+	<select id="getTravelInfo" resultType="TravelinfoBO" parameterType="TravelinfoBO">
+		SELECT
+			TRAVELNAME 	as travelName,
+			TRAVELNO 	as travelNo,
+			ID			as id
+		FROM TRAVELLIST.TRAVEL
+		WHERE TRAVELNO = #{travelNo} 
+	</select>
+</mapper>

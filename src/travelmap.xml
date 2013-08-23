@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	 <package name="travel" namespace="/travel" extends="struts-default">
+	 
+ 	    <global-results>
+		    <result name="error">/error.jsp</result>
+	    </global-results>
+
+	
+	 
+        <action name="DoLogginForm" class="com.travellist.travel.controller.DoLogginForm">
+            <result name="success">/WEB-INF/jsp/prj/loggin.jsp</result>
+        </action>
+
+        <action name="Loggin" class="com.travellist.travel.controller.Loggin">
+            <result name="success">/WEB-INF/jsp/prj/travelist.jsp</result>
+            <result name="fail">/WEB-INF/jsp/prj/loggin.jsp</result>
+        </action>
+        
+        <action name="DoInsertTravel" class="com.travellist.travel.controller.DoInsertTravel">
+             <result type="redirectAction">DoInsertNodeRedirect?travelNo=${travelNo}</result>
+        </action>
+        
+        <action name="DoInsertNode" class="com.travellist.travel.controller.DoInsertNode">
+            <result type="redirectAction">DoInsertNodeRedirect?travelNo=${travelNo}</result>
+        </action>
+        
+        <action name="DoInsertNodeRedirect" class="com.travellist.travel.controller.DoInsertNodeRedirect">
+            <result name="success">/WEB-INF/jsp/prj/insertNodeForm.jsp</result>
+        </action>
+
+        <action name="ShowTravel" class="com.travellist.travel.controller.ShowTravel">
+            <result name="success">/WEB-INF/jsp/prj/showNodeListForm.jsp</result>
+        </action>
+
+        <action name="DoTwitterOauth" class="com.travellist.travel.controller.DoTwitterOauth">
+        	<result name="redirect" type="redirect">${url}</result>
+        </action>
+        
+         <action name="DoTwitterOauthAccess" class="com.travellist.travel.controller.DoTwitterOauthAccess">
+            <result name="success">/WEB-INF/jsp/prj/loggin.jsp</result>
+        </action>
+        
+         <action name="DoWriteTwitter" class="com.travellist.travel.controller.DoWriteTwitter">
+            <result name="success">/WEB-INF/jsp/prj/loggin.jsp</result>
+        </action>
+        
+         <action name="DoTwitter" class="com.travellist.travel.controller.DoTwitter">
+            <result name="success">/WEB-INF/jsp/prj/doTwitter.jsp</result>
+        </action>
+        
+
+    </package>
+</struts>
